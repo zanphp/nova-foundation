@@ -8,8 +8,10 @@
     "zanphp/nova-connection-pool": "dev-master"
   },
   "autoload": {
-    "psr-4": {
-      "ZanPHP\\NovaGeneric\\": "src/"
+    "autoload": {
+      "psr-4": {
+        "Kdt\\Iron\\Nova\\": "src"
+      }
     }
   },
   "extra": {
