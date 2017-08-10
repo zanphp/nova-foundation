@@ -5,6 +5,7 @@ namespace Kdt\Iron\Nova\Foundation;
 use Kdt\Iron\Nova\Foundation\Traits\InstanceManager;
 
 use ZanPHP\Contracts\ConnectionPool\Connection;
+use ZanPHP\Exception\ZanException;
 use ZanPHP\NovaClient\NovaClient;
 use ZanPHP\NovaConnectionPool\Exception\NoFreeConnectionException;
 use ZanPHP\NovaConnectionPool\NovaClientConnectionManager;
@@ -22,6 +23,11 @@ abstract class TService
      * @var TSpecification
      */
     private $relatedSpec = null;
+
+    /**
+     * @var integer
+     */
+    private $timeout = null;
 
     /**
      * @return TSpecification
@@ -80,7 +86,9 @@ abstract class TService
 
         // 历史原因 此处依赖NovaClient, 产生循环依赖
         $client = NovaClient::getInstance($connection, $serviceName);
-        yield $client->call($method, $this->getInputStructSpec($method, $arguments), $this->getOutputStructSpec($method), $this->getExceptionStructSpec($method));
+        $timeout = $this->timeout;
+        $this->timeout = null;
+        yield $client->call($method, $this->getInputStructSpec($method, $arguments), $this->getOutputStructSpec($method), $this->getExceptionStructSpec($method), $timeout);
     }
     
     final public static function getNovaServiceName($specServiceName)
@@ -103,5 +111,15 @@ abstract class TService
             $this->relatedSpec = $this->specificationProvider();
         }
         return $this->relatedSpec;
+    }
+
+    final public function setCurrentInvokeTimeout($ms)
+    {
+        if (is_integer($ms) && $ms > 0) {
+            $this->timeout = $ms;
+        } else {
+            throw new ZanException("Invalid config for setCurrentInvokeTimeout: $ms");
+        }
+        return $this;
     }
 }
