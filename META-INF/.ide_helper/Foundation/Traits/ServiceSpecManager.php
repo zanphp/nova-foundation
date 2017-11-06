@@ -1,6 +1,6 @@
 <?php
 
-namespace ZanPHP\NovaFoundation\Foundation\Traits;
+namespace Kdt\Iron\Nova\Foundation\Traits;
 
 use Thrift\Type\TType;
 use ZanPHP\NovaFoundation\NullResult\NovaEmptyListResult;

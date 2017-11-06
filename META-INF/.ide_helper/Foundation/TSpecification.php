@@ -1,6 +1,6 @@
 <?php
 
-namespace ZanPHP\NovaFoundation\Foundation;
+namespace Kdt\Iron\Nova\Foundation;
 
 use ZanPHP\NovaFoundation\Foundation\Traits\ServiceSpecManager;
 

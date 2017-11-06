@@ -1,6 +1,6 @@
 <?php
 
-namespace ZanPHP\NovaFoundation\Foundation\Protocol;
+namespace Kdt\Iron\Nova\Foundation\Protocol;
 
 use Exception as SysException;
 use ZanPHP\NovaFoundation\Foundation\Traits\StructSpecManager;

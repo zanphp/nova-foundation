@@ -1,6 +1,6 @@
 <?php
 
-namespace ZanPHP\NovaFoundation\Foundation;
+namespace Kdt\Iron\Nova\Foundation;
 
 use ZanPHP\Contracts\ConnectionPool\Connection;
 use ZanPHP\Exception\ZanException;

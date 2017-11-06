@@ -1,6 +1,6 @@
 <?php
 
-namespace ZanPHP\NovaFoundation\NullResult;
+namespace Kdt\Iron\Nova\NullResult;
 
 class NovaEmptyMapResult extends BaseNullResult 
 {
